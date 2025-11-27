@@ -187,6 +187,51 @@ def plot_strategy(df, dma, deviation, title):
     plt.show()
 
 
+
+def export_strategy_to_csv(df, dma, deviation, output_csv):
+    deviation_pct = deviation / 100
+    dma_col = f"DMA{dma}"
+
+    df_out = df.copy()
+
+    # Calculate levels
+    df_out["BuyLevel"] = df_out[dma_col] * (1 - deviation_pct)
+    df_out["SellLevel"] = df_out[dma_col] * (1 + deviation_pct)
+
+    # Create columns for signals
+    df_out["BuySignal"] = 0
+    df_out["SellSignal"] = 0
+    df_out["BuyPrice"] = np.nan
+    df_out["SellPrice"] = np.nan
+
+    position = 0
+
+    for idx, row in df_out.iterrows():
+        price = row["Close"]
+        b = row["BuyLevel"]
+        s = row["SellLevel"]
+
+        if np.isnan(b) or np.isnan(s):
+            continue
+
+        # Buy
+        if position == 0 and price < b:
+            df_out.at[idx, "BuySignal"] = 1
+            df_out.at[idx, "BuyPrice"] = price
+            position = 1
+
+        # Sell
+        elif position == 1 and price > s:
+            df_out.at[idx, "SellSignal"] = 1
+            df_out.at[idx, "SellPrice"] = price
+            position = 0
+
+    # Save to CSV
+    df_out.to_csv(output_csv, index=True)
+
+    print(f"CSV generated: {output_csv}")
+
+
 # ================================
 # RUN FOR MULTIPLE STOCKS
 # ================================
@@ -225,6 +270,12 @@ for file in os.listdir(DATA_DIR):
 
     # Plot best
     plot_strategy(df.copy(), best["DMA"], int(best["Deviation %"]), stock)
+    export_strategy_to_csv(
+        df.copy(),dma=best["DMA"],
+    deviation=int(best["Deviation %"]),
+    output_csv="nhpc_dma200_5.csv"
+    
+    )
 
 
 # FINAL AGGREGATED RESULTS
