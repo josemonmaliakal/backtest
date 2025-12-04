@@ -136,55 +136,55 @@ def run_backtest(df, dma, deviation):
 # ================================
 # PLOTTER
 # ================================
-def plot_strategy(df, dma, deviation, title):
-    deviation = deviation / 100
-    df_plot = df.copy()
+# def plot_strategy(df, dma, deviation, title):
+#     deviation = deviation / 100
+#     df_plot = df.copy()
 
-    df_plot["BuyLevel"] = df_plot[f"DMA{dma}"] * (1 - deviation)
-    df_plot["SellLevel"] = df_plot[f"DMA{dma}"] * (1 + deviation)
+#     df_plot["BuyLevel"] = df_plot[f"DMA{dma}"] * (1 - deviation)
+#     df_plot["SellLevel"] = df_plot[f"DMA{dma}"] * (1 + deviation)
 
-    buys, sells = [], []
-    position = 0
+#     buys, sells = [], []
+#     position = 0
 
-    for date, row in df_plot.iterrows():
-        price = row["Close"]
-        b = row["BuyLevel"]
-        s = row["SellLevel"]
+#     for date, row in df_plot.iterrows():
+#         price = row["Close"]
+#         b = row["BuyLevel"]
+#         s = row["SellLevel"]
 
-        if np.isnan(b) or np.isnan(s):
-            continue
+#         if np.isnan(b) or np.isnan(s):
+#             continue
 
-        if position == 0 and price < b:
-            buys.append((date, price))
-            position = 1
+#         if position == 0 and price < b:
+#             buys.append((date, price))
+#             position = 1
 
-        elif position == 1 and price > s:
-            sells.append((date, price))
-            position = 0
+#         elif position == 1 and price > s:
+#             sells.append((date, price))
+#             position = 0
 
-    plt.figure(figsize=(16, 8))
+#     plt.figure(figsize=(16, 8))
 
-    plt.plot(df_plot.index, df_plot["Close"], label="Close Price", linewidth=1)
-    plt.plot(df_plot.index, df_plot[f"DMA{dma}"], label=f"{dma} DMA", linewidth=2)
+#     plt.plot(df_plot.index, df_plot["Close"], label="Close Price", linewidth=1)
+#     plt.plot(df_plot.index, df_plot[f"DMA{dma}"], label=f"{dma} DMA", linewidth=2)
 
-    plt.plot(df_plot.index, df_plot["BuyLevel"], label="Buy Level", linestyle="--")
-    plt.plot(df_plot.index, df_plot["SellLevel"], label="Sell Level", linestyle="--")
+#     plt.plot(df_plot.index, df_plot["BuyLevel"], label="Buy Level", linestyle="--")
+#     plt.plot(df_plot.index, df_plot["SellLevel"], label="Sell Level", linestyle="--")
 
-    if buys:
-        plt.scatter([x[0] for x in buys], [x[1] for x in buys],
-                    marker="^", color="green", s=120, label="Buy")
+#     if buys:
+#         plt.scatter([x[0] for x in buys], [x[1] for x in buys],
+#                     marker="^", color="green", s=120, label="Buy")
 
-    if sells:
-        plt.scatter([x[0] for x in sells], [x[1] for x in sells],
-                    marker="v", color="red", s=120, label="Sell")
+#     if sells:
+#         plt.scatter([x[0] for x in sells], [x[1] for x in sells],
+#                     marker="v", color="red", s=120, label="Sell")
 
-    plt.title(f"NHPC Strategy — DMA {dma}, Deviation {deviation*100:.0f}%")
-    plt.xlabel("Date")
-    plt.ylabel("Price")
-    plt.grid(True, alpha=0.3)
-    plt.legend()
-    plt.tight_layout()
-    plt.show()
+#     plt.title(f"{stock} Strategy — DMA {dma}, Deviation {deviation*100:.0f}%")
+#     plt.xlabel("Date")
+#     plt.ylabel("Price")
+#     plt.grid(True, alpha=0.3)
+#     plt.legend()
+#     plt.tight_layout()
+#     plt.show()
 
 
 
@@ -193,7 +193,7 @@ def export_strategy_to_csv(df, dma, deviation, output_csv):
     dma_col = f"DMA{dma}"
 
     df_out = df.copy()
-
+    df_out["DMA"] = df_out[dma_col]
     # Calculate levels
     df_out["BuyLevel"] = df_out[dma_col] * (1 - deviation_pct)
     df_out["SellLevel"] = df_out[dma_col] * (1 + deviation_pct)
@@ -226,8 +226,12 @@ def export_strategy_to_csv(df, dma, deviation, output_csv):
             df_out.at[idx, "SellPrice"] = price
             position = 0
 
+    # Choose only the columns you want
+    columns_needed = ["Close",'DMA','DMA25','DMA50','BuyLevel','SellLevel','BuySignal','BuyPrice','SellSignal','SellPrice']  # <-- change as needed    
+    df_out_selected = df_out[columns_needed].round(2)
     # Save to CSV
-    df_out.to_csv(output_csv, index=True)
+    df_out_selected.to_csv(output_csv, index=True)
+   
 
     print(f"CSV generated: {output_csv}")
 
@@ -254,7 +258,7 @@ for file in os.listdir(DATA_DIR):
     print(f"\n\n========== Running Backtests for {stock} ==========\n")
 
     stock_results = []
-    
+   
     for dma in DMA_LIST:
         for d in DEVIATIONS:
             r = run_backtest(df.copy(), dma, d)
@@ -267,14 +271,17 @@ for file in os.listdir(DATA_DIR):
 
     print(f"\nBEST STRATEGY FOR {stock}:")
     print(best)
-
+   
     # Plot best
-    plot_strategy(df.copy(), best["DMA"], int(best["Deviation %"]), stock)
+    #plot_strategy(df.copy(), best["DMA"], int(best["Deviation %"]), stock)
+   
+   
+
     export_strategy_to_csv(
         df.copy(),dma=best["DMA"],
     deviation=int(best["Deviation %"]),
-    output_csv="nhpc_dma200_5.csv"
-    
+    output_csv=f"{stock}-out.csv"
+   
     )
 
 
@@ -282,3 +289,4 @@ for file in os.listdir(DATA_DIR):
 final_df = pd.DataFrame(all_results)
 print("\n========= MASTER RESULT TABLE =========")
 print(final_df)
+
