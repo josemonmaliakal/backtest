@@ -278,9 +278,10 @@ async function selectStock(stock,type, data) {
                     BuyElement.classList.remove('show');
                     }
                 }
-               
-                if (sellEelemnt.classList.contains('show')){
-                    sellEelemnt.classList.remove('show');
+                if (sellEelemnt!=null){
+                    if (sellEelemnt.classList.contains('show')){
+                        sellEelemnt.classList.remove('show');
+                    }
                 }
             }
            

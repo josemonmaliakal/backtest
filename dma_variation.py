@@ -305,7 +305,7 @@ for file in os.listdir(DATA_DIR):
     export_strategy_to_csv(
         df.copy(),dma=best["DMA"],
     deviation=int(best["Deviation"]),
-    output_csv=f"final/{stock}-out.csv"
+    output_csv=f"final/ {stock}-out.csv"
    
     )
 
