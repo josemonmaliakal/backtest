@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>200 DMA Stock Backtesting Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title> DMA Stock Backtesting Dashboard</title>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
         body {
@@ -74,92 +74,9 @@
         <!-- Header -->
         <div class="row mb-4">
             <div class="col-12">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h1 class="mb-0">200 DMA Backtesting Dashboard</h1>
-                    <div>
-                        <button class="btn btn-outline-secondary me-2" onclick="refreshData()">
-                            <i class="bi bi-arrow-clockwise"></i>
-                        </button>
-                        <button class="btn btn-outline-secondary me-2" onclick="downloadData()">
-                            <i class="bi bi-download"></i>
-                        </button>
-                        <button class="btn btn-primary" onclick="toggleSettings()">
-                            <i class="bi bi-gear"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Algorithm Settings Panel -->
-                <div id="settingsPanel" class="settings-panel p-4 mb-4" style="display: none;">
-                    <h5 class="mb-3">Algorithm Settings</h5>
-                    <div class="row g-3">
-                        <div class="col-md-3">
-                            <label class="form-label">DMA Period</label>
-                            <input type="number" class="form-control" id="dmaPeriod" value="200">
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">Stop Loss %</label>
-                            <input type="number" class="form-control" id="stopLoss" value="5">
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">Entry Rule</label>
-                            <select class="form-select" id="entryRule">
-                                <option value="crossover" selected>Crossover</option>
-                                <option value="above">Price Above DMA</option>
-                                <option value="bounce">Bounce Off DMA</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">Date Range</label>
-                            <select class="form-select" id="dateRange">
-                                <option value="1M">1 Month</option>
-                                <option value="3M">3 Months</option>
-                                <option value="6M">6 Months</option>
-                                <option value="1Y" selected>1 Year</option>
-                                <option value="ALL">All Time</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mt-3">
-                        <button class="btn btn-primary me-2" onclick="applySettings()">Apply Settings</button>
-                        <button class="btn btn-secondary" onclick="savePreset()">Save as Preset</button>
-                    </div>
-                </div>
-
                 <!-- Quick Stats -->
                 <div class="row g-3">
-                    <div class="col-md-3">
-                        <div class="card stat-card">
-                            <div class="card-body">
-                                <h6 class="text-muted mb-2">Total Signals</h6>
-                                <h3 class="mb-0" id="totalSignals">7</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card stat-card">
-                            <div class="card-body">
-                                <h6 class="text-muted mb-2">Win Rate</h6>
-                                <h3 class="mb-0 text-success" id="winRate">67.5%</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card stat-card">
-                            <div class="card-body">
-                                <h6 class="text-muted mb-2">Avg Return</h6>
-                                <h3 class="mb-0 text-primary" id="avgReturn">4.2%</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card stat-card">
-                            <div class="card-body">
-                                <h6 class="text-muted mb-2">Active Positions</h6>
-                                <h3 class="mb-0" id="activePositions">12</h3>
-                            </div>
-                        </div>
-                    </div>
+                    <h5>DMA BACKTESTING SIMULATION </h5>
                 </div>
             </div>
         </div>
@@ -167,18 +84,18 @@
         <!-- Main Content -->
         <div class="row g-4">
             <!-- Left Column - Signals List -->
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="buy-tab" data-bs-toggle="tab" data-bs-target="#buy-signals" type="button" role="tab">
-                                    <i class="bi bi-graph-up-arrow text-success"></i> Buy Signals <span class="badge bg-success ms-2" id="buyCount">4</span>
+                                    <i class="bi bi-graph-up-arrow text-success"></i> Buy Signals
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="sell-tab" data-bs-toggle="tab" data-bs-target="#sell-signals" type="button" role="tab">
-                                    <i class="bi bi-graph-down-arrow text-danger"></i> Sell Signals <span class="badge bg-danger ms-2" id="sellCount">3</span>
+                                    <i class="bi bi-graph-down-arrow text-danger"></i> Sell Signals
                                 </button>
                             </li>
                         </ul>
@@ -192,7 +109,7 @@
                             </div>
                         </div>
 
-                        <!-- Tab Content -->
+                        <!-- Tab Content -->                        
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="buy-signals" role="tabpanel">
                                 <div class="table-container">
@@ -201,13 +118,13 @@
                                             <tr>
                                                 <th>Stock</th>
                                                 <th>Date</th>
-                                                <th>Price</th>
-                                                <th>R/R</th>
+                                                <th>Price</th>                                              
                                             </tr>
                                         </thead>
                                         <tbody id="buyTableBody">
-                                            <!-- Buy signals will be inserted here -->
-                                        </tbody>
+                                                <!-- Buy signals will be inserted here -->
+                                        </tbody>  
+                                       
                                     </table>
                                 </div>
                             </div>
@@ -217,9 +134,8 @@
                                         <thead class="table-light sticky-top">
                                             <tr>
                                                 <th>Stock</th>
+                                                <th>Date</th>
                                                 <th>Price</th>
-                                                <th>Signal</th>
-                                                <th>Return</th>
                                             </tr>
                                         </thead>                                        
                                         <tbody id="sellTableBody">
@@ -233,259 +149,21 @@
                 </div>
             </div>
             <!-- Right Column - Analytics -->
-            <div class="col-lg-6">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title mb-4">Performance Overview</h5>
-                        <div>
-                            <button id="filter3m">Last 3 Months</button>
-                            <button id="filter6m">Last 6 Months</button>
-                            <button id="filter1y">Last 1 Year</button>
-                            <button id="filterAll">All Data</button>
-                        </div>
-
-                        <div class="chart-placeholder">                          
-                            <div class="text-center">
-                             
-                                <canvas class="my-4 w-100"
-                                            id="myChart"
-                                            width="900"
-                                            height="380"
-                                          >
-                              </canvas>                                
-                            </div>
-                        </div>
-                    </div>
-                </div>                
-            </div>          
-        </div>
-        <div class="row mt-4">
-          <div class="col-lg-6">
-            <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title mb-4">Active Algorithm</h5>
-                        <table class="table table-sm">
-                            <tbody>
-                                <tr>
-                                    <td class="text-muted">DMA Period:</td>
-                                    <td class="text-end fw-bold"><span id="activeDmaPeriod">200</span> days</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-muted">Entry Rule:</td>
-                                    <td class="text-end fw-bold text-capitalize" id="activeEntryRule">crossover</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-muted">Stop Loss:</td>
-                                    <td class="text-end fw-bold"><span id="activeStopLoss">5</span>%</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-muted">Date Range:</td>
-                                    <td class="text-end fw-bold" id="activeDateRange">1Y</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-          </div>
-          <div class="col-lg-6"></div>
-        </div>
+        </div>        
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        var buySignals = [
-            { symbol: 'AAPL', name: 'Apple Inc.', price: 178.50, signal: 'Strong', entryDate: '2024-11-28', target: 185.20, rr: 2.5, strength: 92 },
-            { symbol: 'MSFT', name: 'Microsoft Corp.', price: 372.40, signal: 'Moderate', entryDate: '2024-11-29', target: 380.00, rr: 2.1, strength: 78 },
-            { symbol: 'GOOGL', name: 'Alphabet Inc.', price: 138.90, signal: 'Strong', entryDate: '2024-11-30', target: 145.00, rr: 2.8, strength: 88 },
-            { symbol: 'NVDA', name: 'NVIDIA Corp.', price: 485.20, signal: 'Moderate', entryDate: '2024-12-01', target: 495.00, rr: 1.9, strength: 72 }
-        ];
-
-        var sellSignals = [
-            { symbol: 'TSLA', name: 'Tesla Inc.', price: 242.80, signal: 'Strong', exitDate: '2024-11-29', daysHeld: 45, return: -3.2, strength: 85 },
-            { symbol: 'META', name: 'Meta Platforms', price: 328.50, signal: 'Urgent', exitDate: '2024-11-30', daysHeld: 32, return: -5.8, strength: 94 },
-            { symbol: 'AMZN', name: 'Amazon.com', price: 148.20, signal: 'Moderate', exitDate: '2024-12-01', daysHeld: 28, return: -2.1, strength: 68 }
-        ];
-
-        var selectedStock = null;
-
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            renderSellSignals();
-        });
-
-
-
-        function renderSellSignals() {
-            var tbody = document.getElementById('sellTableBody');
-            tbody.innerHTML = '';
-            for (var i = 0; i < sellSignals.length; i++) {
-                var stock = sellSignals[i];
-                var row = document.createElement('tr');
-                row.className = 'stock-row';
-                row.setAttribute('data-index', i);
-                row.setAttribute('data-type', 'sell');
-                row.onclick = function() {
-                    var idx = parseInt(this.getAttribute('data-index'));
-                    selectStock(sellSignals[idx]);
-                };
-                var returnClass = stock.return < 0 ? 'text-danger' : 'text-success';
-                var returnSign = stock.return > 0 ? '+' : '';
-                row.innerHTML = '<td><div class="fw-bold">' + stock.symbol + '</div><small class="text-muted">' + stock.name + '</small></td>' +
-                    '<td>$' + stock.price + '</td>' +
-                    '<td><span class="badge signal-badge-' + stock.signal.toLowerCase() + '">' + stock.signal + '</span></td>' +
-                    '<td><span class="fw-bold ' + returnClass + '">' + returnSign + stock.return + '%</span></td>';
-                tbody.appendChild(row);
-            }
-        }
-
-        function selectStock(stock) {
-            console.log(stock);
-            selectedStock = stock;
-           
-            var rows = document.querySelectorAll('.stock-row');
-            for (var i = 0; i < rows.length; i++) {
-                rows[i].classList.remove('active');
-            }
-           
-            event.currentTarget.classList.add('active');
-           
-            var detailsDiv = document.getElementById('stockDetails-'+stock.symbol);
-           
-            var html = '<h5 class="card-title">Stock Details</h5>';
-            html += '<div class="mb-4">';
-            html += '<h3 class="mb-0">' + stock.symbol + '</h3>';
-            html += '<p class="text-muted">' + stock.name + '</p>';
-            html += '<h2 class="fw-bold">$' + stock.price + '</h2>';
-            html += '</div><hr>';
-           
-            html += '<h6 class="mb-3">Signal Information</h6>';
-            html += '<table class="table table-sm"><tbody>';
-            html += '<tr><td class="text-muted">Signal Strength:</td><td class="text-end fw-bold">' + stock.strength + '%</td></tr>';
-           
-            if (stock.target) {
-                html += '<tr><td class="text-muted">Target Price:</td><td class="text-end fw-bold">$' + stock.target + '</td></tr>';
-            }
-            if (stock.rr) {
-                html += '<tr><td class="text-muted">Risk/Reward:</td><td class="text-end fw-bold">' + stock.rr + 'x</td></tr>';
-            }
-            if (stock.daysHeld) {
-                html += '<tr><td class="text-muted">Days Held:</td><td class="text-end fw-bold">' + stock.daysHeld + ' days</td></tr>';
-            }
-           
-            html += '</tbody></table>';          
-            html += '</div></div>';
-            detailsDiv.innerHTML = html;
-        }
-
-        function filterStocks() {
-            var searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            var activeTabPane = document.querySelector('.tab-pane.active');
-            var activeTabId = activeTabPane.id;
-           
-            if (activeTabId === 'buy-signals') {
-                var tbody = document.getElementById('buyTableBody');
-                tbody.innerHTML = '';
-                for (var i = 0; i < buySignals.length; i++) {
-                    var stock = buySignals[i];
-                    if (stock.symbol.toLowerCase().includes(searchTerm) || stock.name.toLowerCase().includes(searchTerm)) {
-                        var row = document.createElement('tr');
-                        row.className = 'stock-row';
-                        row.setAttribute('data-index', i);
-                        row.onclick = function() {
-                            var idx = parseInt(this.getAttribute('data-index'));
-                            selectStock(buySignals[idx]);
-                        };
-                        row.innerHTML = '<td><div class="fw-bold">' + stock.symbol + '</div><small class="text-muted">' + stock.name + '</small></td>' +
-                            '<td>$' + stock.price + '</td>' +
-                            '<td><span class="badge signal-badge-' + stock.signal.toLowerCase() + '">' + stock.signal + '</span></td>' +
-                            '<td>' + stock.rr + 'x</td>';
-                        tbody.appendChild(row);
-                    }
-                }
-            } else {
-                var tbody = document.getElementById('sellTableBody');
-                tbody.innerHTML = '';
-                for (var i = 0; i < sellSignals.length; i++) {
-                    var stock = sellSignals[i];
-                    if (stock.symbol.toLowerCase().includes(searchTerm) || stock.name.toLowerCase().includes(searchTerm)) {
-                        var row = document.createElement('tr');
-                        row.className = 'stock-row';
-                        row.setAttribute('data-index', i);
-                        row.onclick = function() {
-                            var idx = parseInt(this.getAttribute('data-index'));
-                            selectStock(sellSignals[idx]);
-                        };
-                        var returnClass = stock.return < 0 ? 'text-danger' : 'text-success';
-                        var returnSign = stock.return > 0 ? '+' : '';
-                        row.innerHTML = '<td><div class="fw-bold">' + stock.symbol + '</div><small class="text-muted">' + stock.name + '</small></td>' +
-                            '<td>$' + stock.price + '</td>' +
-                            '<td><span class="badge signal-badge-' + stock.signal.toLowerCase() + '">' + stock.signal + '</span></td>' +
-                            '<td><span class="fw-bold ' + returnClass + '">' + returnSign + stock.return + '%</span></td>';
-                        tbody.appendChild(row);
-                    }
-                }
-            }
-        }
-
-        function toggleSettings() {
-            var panel = document.getElementById('settingsPanel');
-            if (panel.style.display === 'none') {
-                panel.style.display = 'block';
-            } else {
-                panel.style.display = 'none';
-            }
-        }
-
-        function applySettings() {
-            var dmaPeriod = document.getElementById('dmaPeriod').value;
-            var stopLoss = document.getElementById('stopLoss').value;
-            var entryRule = document.getElementById('entryRule').value;
-            var dateRange = document.getElementById('dateRange').value;
-
-            document.getElementById('activeDmaPeriod').textContent = dmaPeriod;
-            document.getElementById('activeStopLoss').textContent = stopLoss;
-            document.getElementById('activeEntryRule').textContent = entryRule;
-            document.getElementById('activeDateRange').textContent = dateRange;
-
-            alert('Settings applied successfully!');
-        }
-
-        function savePreset() {
-            alert('Preset saved successfully!');
-        }
-
-        function refreshData() {
-            alert('Refreshing data...');
-        }
-
-        function downloadData() {
-            alert('Downloading data...');
-        }
+    <script src="assets/js/bootstrap.bundle.min.js"></script>    
+    <script
+        src="assets/js/chart.umd.js"
+        integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp"
+        crossorigin="anonymous"
+        class="astro-vvvwv3sm"
+        >
     </script>
-     <script
-      src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js"
-      integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp"
-      crossorigin="anonymous"
-      class="astro-vvvwv3sm"
-    ></script>
-    <script src="dashboard.js" class="astro-vvvwv3sm"></script>
+    <!-- Luxon -->
+    <script src="assets/js/luxon.min.js"></script>
+    <!-- Chart.js Luxon Adapter -->
+    <script src="assets/js/chartjs-adapter-luxon.js"></script>
+    <script src="assets/js/dashboard.js" class="astro-vvvwv3sm"></script>
 </body>
-</html>
-<!doctype html>
-<html lang="en" data-bs-theme="auto">
-  <head>
-   
-
-   
-  </head>
-  <body>
-   
-   
-   
-   
-   
-   
-   
-  </body>
 </html>
 

@@ -87,7 +87,7 @@ def run_backtest(df, dma, deviation):
             net = profit - tax
 
             equity += total - tax
-            trades.append({"date": date, "net": net})
+            trades.append({"date": date,"profit":profit , "net": net,"buyPrice":buy_price,"sellPrice":price,"units":units})
             trade_events.append({"date": date, "price": price, "type": "SELL"})
 
             position = 0
@@ -109,26 +109,53 @@ def run_backtest(df, dma, deviation):
         tax = profit * (LTCG_TAX if holding_days > LTCG_HOLDING_DAYS else STCG_TAX)
 
         equity += total - tax
-        trades.append({"date": date, "net": profit - tax})
+        trades.append({"date": date, "net": profit - tax, "buyPrice":buy_price,"sellPrice":price,"units":units})
 
     # FINANCIAL YEAR SPLIT
-    if trades:
+    if trades:        
         tdf = pd.DataFrame(trades)
+        # Ensure numeric types (safeguard in case of strings)
+        for col in ["net", "buyPrice", "sellPrice", "units"]:
+            tdf[col] = pd.to_numeric(tdf[col], errors="coerce").fillna(0)
+        # Financial Year
         tdf["FY"] = tdf["date"].apply(get_financial_year)
-        fy_summary = tdf.groupby("FY")["net"].sum().to_dict()
+       
+        # Amounts = price * units (needed for weighted averages)
+        tdf["buyAmount"]  = tdf["buyPrice"]  * tdf["units"]
+        tdf["sellAmount"] = tdf["sellPrice"] * tdf["units"]
+
+        # Aggregate per FY
+       
+        g = tdf.groupby("FY", as_index=False).agg({
+                "net": "sum",
+                "units": "sum",
+                "buyAmount": "sum",
+                "sellAmount": "sum"
+            })        
+        # Compute weighted averages; guard against division by zero
+        g["avgBuy"]  = (g["buyAmount"]  / g["units"]).where(g["units"] != 0, 0)
+        g["avgSell"] = (g["sellAmount"] / g["units"]).where(g["units"] != 0, 0)
+
+        # Build summary dict
+        fy_summary = (
+                g[["FY","net", "units", "avgBuy", "avgSell", "buyAmount", "sellAmount"]]
+                .set_index("FY")
+                .to_dict(orient="index")
+        )
+
     else:
         fy_summary = {}
-
+   
     total_profit = sum(t["net"] for t in trades)
     roi = (equity - INITIAL_CAPITAL) / INITIAL_CAPITAL * 100
-
+   
     return {
         "DMA": dma,
-        "Deviation %": deviation * 100,
-        "Net Profit": total_profit,
-        "ROI %": roi,
+        "Deviation": deviation * 100,
+        "NetProfit": total_profit,
+        "ROI": roi,
         "Equity": equity,
-        "FY Summary": fy_summary,
+        "FYSummary": fy_summary,
         "Trades": trade_events
     }
 
@@ -267,20 +294,18 @@ for file in os.listdir(DATA_DIR):
             all_results.append(r)
 
     stock_df = pd.DataFrame(stock_results)
-    best = stock_df.loc[stock_df["Net Profit"].idxmax()]
+    best = stock_df.loc[stock_df["NetProfit"].idxmax()]
 
     print(f"\nBEST STRATEGY FOR {stock}:")
     print(best)
+    best.to_csv(f"final/best-{stock}.csv")
    
     # Plot best
-    #plot_strategy(df.copy(), best["DMA"], int(best["Deviation %"]), stock)
-   
-   
-
+    #plot_strategy(df.copy(), best["DMA"], int(best["Deviation"]), stock)
     export_strategy_to_csv(
         df.copy(),dma=best["DMA"],
-    deviation=int(best["Deviation %"]),
-    output_csv=f"{stock}-out.csv"
+    deviation=int(best["Deviation"]),
+    output_csv=f"final/{stock}-out.csv"
    
     )
 
@@ -289,4 +314,5 @@ for file in os.listdir(DATA_DIR):
 final_df = pd.DataFrame(all_results)
 print("\n========= MASTER RESULT TABLE =========")
 print(final_df)
+
 

@@ -1,0 +1,9 @@
+,19
+DMA,50
+Deviation,10.0
+NetProfit,23227.34090676607
+ROI,23.14180174750865
+Equity,123141.80174750865
+FYSummary,"{'2025-26': {'net': 23227.34090676607, 'units': 4612, 'avgBuy': 46.989145706851694, 'avgSell': 52.99677363399827, 'buyAmount': 216713.94, 'sellAmount': 244421.12}}"
+Trades,"[{'date': Timestamp('2025-02-11 00:00:00'), 'price': 51.81, 'type': 'BUY'}, {'date': Timestamp('2025-06-09 00:00:00'), 'price': 62.15, 'type': 'SELL'}, {'date': Timestamp('2025-07-18 00:00:00'), 'price': 43.52, 'type': 'BUY'}]"
+Stock,MSUMI

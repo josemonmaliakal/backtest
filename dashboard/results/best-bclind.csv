@@ -1,0 +1,9 @@
+,1
+DMA,25
+Deviation,2.0
+NetProfit,4959.635690820494
+ROI,4.581612182377678
+Equity,104581.61218237768
+FYSummary,"{'2024-25': {'net': -10661.672065033206, 'units': 4273, 'avgBuy': 48.06134331851158, 'avgSell': 45.19830095951322, 'buyAmount': 205366.12, 'sellAmount': 193132.34}, '2025-26': {'net': 15621.3077558537, 'units': 19320, 'avgBuy': 38.94195445134575, 'avgSell': 39.95617080745342, 'buyAmount': 752358.5599999999, 'sellAmount': 771953.22}}"
+Trades,"[{'date': Timestamp('2025-01-08 00:00:00'), 'price': 48.34, 'type': 'BUY'}, {'date': Timestamp('2025-01-20 00:00:00'), 'price': 51.53, 'type': 'SELL'}, {'date': Timestamp('2025-01-22 00:00:00'), 'price': 47.8, 'type': 'BUY'}, {'date': Timestamp('2025-03-21 00:00:00'), 'price': 39.26, 'type': 'SELL'}, {'date': Timestamp('2025-03-26 00:00:00'), 'price': 36.47, 'type': 'BUY'}, {'date': Timestamp('2025-04-03 00:00:00'), 'price': 39.22, 'type': 'SELL'}, {'date': Timestamp('2025-04-07 00:00:00'), 'price': 35.94, 'type': 'BUY'}, {'date': Timestamp('2025-04-16 00:00:00'), 'price': 39.12, 'type': 'SELL'}, {'date': Timestamp('2025-05-06 00:00:00'), 'price': 37.12, 'type': 'BUY'}, {'date': Timestamp('2025-05-14 00:00:00'), 'price': 39.78, 'type': 'SELL'}, {'date': Timestamp('2025-06-19 00:00:00'), 'price': 40.43, 'type': 'BUY'}, {'date': Timestamp('2025-06-25 00:00:00'), 'price': 43.6, 'type': 'SELL'}, {'date': Timestamp('2025-07-03 00:00:00'), 'price': 41.3, 'type': 'BUY'}, {'date': Timestamp('2025-07-17 00:00:00'), 'price': 43.24, 'type': 'SELL'}, {'date': Timestamp('2025-08-12 00:00:00'), 'price': 40.72, 'type': 'BUY'}, {'date': Timestamp('2025-09-22 00:00:00'), 'price': 43.16, 'type': 'SELL'}, {'date': Timestamp('2025-10-13 00:00:00'), 'price': 39.98, 'type': 'BUY'}]"
+Stock,bclind
