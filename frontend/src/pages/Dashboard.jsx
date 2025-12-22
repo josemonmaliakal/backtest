@@ -15,6 +15,7 @@ const Dashboard = () => {
   });
 
    // 👇 THIS replaces dashboardView / detailView toggling
+  console.log(selectedStock)
   if (selectedStock) {
     return (
       <DetailView
