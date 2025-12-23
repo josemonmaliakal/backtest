@@ -1,23 +1,26 @@
 export const opportunities = [
   {
-    symbol: "AAPL",
-    name: "Apple Inc.",
+    symbol: "BCLIND",
+    name: "BCL INDUSTRIES",
     signal: "BUY",
     strategies: ["RSI Crossover", "200 DMA"],
     price: 185.92,
     target: 198.5,
     backtest: 28.4,
     winRate: 72,
+    csvPath: "/data/BCLIND.csv"
+    
   },
   {
-    symbol: "TSLA",
-    name: "Tesla Inc.",
+    symbol: "GPPL",
+    name: "Gujarath Pipaval Ports",
     signal: "BUY",
     strategies: ["Moving Avg Crossover"],
     price: 248.15,
     target: 275,
     backtest: 35.2,
     winRate: 68,
+    csvPath : "/data/GPPL.csv"
   },
   {
     symbol: "MSFT",
@@ -28,6 +31,7 @@ export const opportunities = [
     target: 398.2,
     backtest: 22.1,
     winRate: 65,
+    priceData : "/data/GPPL.csv"
   },
   {
     symbol: "NVDA",
@@ -38,5 +42,6 @@ export const opportunities = [
     target: 540,
     backtest: 42.7,
     winRate: 76,
+    priceData : "/data/GPPL.csv"
   },
 ];

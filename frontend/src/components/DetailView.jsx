@@ -1,3 +1,5 @@
+import PriceChart from "./PriceChart";
+
 const DetailView = ({ stock, onBack }) => {
   return(
           <div className="container-fluid mt-4 detail-view" id="detailView">
@@ -23,9 +25,8 @@ const DetailView = ({ stock, onBack }) => {
                       </div>
                       <div className="row">
                           <div className="col-md-12">
-                              <span class="signal-badge signal-buy" id="detailSignal">BUY</span>
-                               <span class="signal-badge" >100 INR</span>
-                                
+                              <span className="signal-badge signal-buy" id="detailSignal">BUY</span>
+                               <span className="signal-badge" >100 INR</span>                                
                           </div>
                     </div>
                       
@@ -33,31 +34,41 @@ const DetailView = ({ stock, onBack }) => {
               </div>
                <div className="col-md-8">
                   <div className="stat-card">
-                      <div className="stat-label">Backtest Summary</div>
+                      <div className="stat-label">Backtest Summary : RSI Crossover + 200 DMA </div>
                       <div className="row">
                           <div className="col-md-12">
                               <div className="metric-item">
-                                  <span className="stat-value">RSI Crossover + 200 DMA</span>
+                                  <span className="stat-value"></span>
                               </div>
                           </div>
                       </div>
                       <div className="row">
-                          <div className="col-md-3">
+                          <div className="col-md-6">
                               <div className="metric-item">
                                   <span className="metric-label">Total Return</span>
                                   <span className="metric-value positive">+28.4%</span>
                               </div>
-                          </div>
-                          <div className="col-md-3">
-                              <div className="metric-item">
-                                  <span className="metric-label">Win Rate</span>
-                                  <span className="metric-value">72%</span>
+                               <div className="metric-item">
+                                  <span className="metric-label">Profit %</span>
+                                  <span className="metric-value positive">+28.4%</span>
                               </div>
-                          </div>
-                          <div className="col-md-3">
                               <div className="metric-item">
                                   <span className="metric-label">Total Trades</span>
                                   <span className="metric-value">43</span>
+                              </div>
+                          </div>                          
+                          <div className="col-md-6">
+                              <div className="metric-item">
+                                  <span className="metric-label">DMA Days</span>
+                                  <span className="metric-value">200</span>
+                              </div>
+                              <div className="metric-item">
+                                  <span className="metric-label">DMA Variation</span>
+                                  <span className="metric-value">5%</span>
+                              </div>
+                              <div className="metric-item">
+                                  <span className="metric-label">DMA Variation</span>
+                                  <span className="metric-value">5%</span>
                               </div>
                           </div>
                       </div>
@@ -66,20 +77,17 @@ const DetailView = ({ stock, onBack }) => {
               </div>
             </div>
             <div className="row">
-              <div className="col-12">
-                  <h3 className="section-title">Price & Signals Chart</h3>
-                  <div className="chart-container">
-                      <div className="text-center">
-                          <i className="bi bi-graph-up" style={{ fontSize: "3rem" }} ></i>
-                          <p className="mt-3">Chart will be rendered here with your charting library (Chart.js, Recharts, or Plotly)</p>
-                      </div>
-                  </div>
+                <div className="col-12">
+                    <h3 className="section-title">Price & Signals Chart</h3>
+                    <div className="chart-container">
+                    <PriceChart data={stock.priceData} />
+                </div>
               </div>
             </div>
             <div className="row mt-4">
-              <div className="col-md-6">
+              <div className="col-md-4">
                   <div className="stat-card">
-                      <h4 className="mb-3">Recent Signals</h4>
+                      <h4 className="stat-label">Recent Signals</h4>
                       <div className="metric-item">
                           <span className="metric-label">Dec 20, 2024</span>
                           <span className="metric-value positive">BUY @ $182.50</span>
@@ -93,29 +101,26 @@ const DetailView = ({ stock, onBack }) => {
                           <span className="metric-value positive">BUY @ $178.30</span>
                       </div>
                   </div>
-              </div>
-              <div className="col-md-6">
+              </div>  
+              <div className="col-md-8">
                   <div className="stat-card">
-                      <h4 className="mb-3">Strategy Parameters</h4>
+                      <h4 className="stat-label">PROFIT AND LOSS </h4>
                       <div className="metric-item">
-                          <span className="metric-label">RSI Period</span>
-                          <span className="metric-value">14 days</span>
+                          <span className="metric-label">Dec 20, 2024</span>
+                          <span className="metric-value positive">BUY @ $182.50</span>
                       </div>
                       <div className="metric-item">
-                          <span className="metric-label">RSI Oversold</span>
-                          <span className="metric-value">30</span>
+                          <span className="metric-label">Nov 15, 2024</span>
+                          <span className="metric-value negative">SELL @ $195.20</span>
                       </div>
                       <div className="metric-item">
-                          <span className="metric-label">RSI Overbought</span>
-                          <span className="metric-value">70</span>
-                      </div>
-                      <div className="metric-item">
-                          <span className="metric-label">DMA Period</span>
-                          <span className="metric-value">200 days</span>
+                          <span className="metric-label">Oct 28, 2024</span>
+                          <span className="metric-value positive">BUY @ $178.30</span>
                       </div>
                   </div>
-              </div>
+              </div>              
             </div>
+            
           </div>
         );
       };
