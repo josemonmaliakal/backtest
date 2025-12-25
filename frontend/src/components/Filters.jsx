@@ -3,8 +3,6 @@ const Filters = ({ onFilterChange }) => {
     "All Signals",
     "Buy Only",
     "Sell Only",
-    "High Confidence",
-    "This Week",
   ];
 
   const handleClick = (filter) => {

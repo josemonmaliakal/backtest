@@ -1,47 +1,48 @@
 import React from "react";
+import { buySignals, sellSignals } from "../data/signals";
 
-const DashboardStats = () => {
+const DashboardStats = ({items}) => {
+
+  let buySignals = 0;
+  let sellSignals = 0;
+  items.forEach(row => {
+    if (row.signal==="BUY"){
+      buySignals+=1;
+    }
+    else{
+      sellSignals+=1;
+    }
+  });
+
   return (
     <div className="container-fluid mt-4" id="dashboardView">
       {/* Stats Overview */}
       <div className="row mb-4">
         <div className="col-md-3">
           <div className="stat-card">
-            <div className="stat-label">Total Opportunities</div>
-            <div className="stat-value">24</div>
-            <div className="trend-indicator positive">
-              <i className="bi bi-arrow-up"></i> 6 from last week
-            </div>
+            <div className="stat-label"> Opportunities</div>
+            <div className="stat-value">{items.length}</div>            
           </div>
         </div>
 
         <div className="col-md-3">
           <div className="stat-card">
             <div className="stat-label">Buy Signals</div>
-            <div className="stat-value positive">18</div>
-            <div className="trend-indicator positive">
-              <i className="bi bi-arrow-up"></i> 4 new
-            </div>
+            <div className="stat-value positive">{buySignals}</div>            
           </div>
         </div>
 
         <div className="col-md-3">
           <div className="stat-card">
             <div className="stat-label">Sell Signals</div>
-            <div className="stat-value negative">6</div>
-            <div className="trend-indicator negative">
-              <i className="bi bi-arrow-down"></i> 2 less
-            </div>
+            <div className="stat-value negative">{sellSignals}</div>            
           </div>
         </div>
 
         <div className="col-md-3">
           <div className="stat-card">
             <div className="stat-label">Avg. Backtest Return</div>
-            <div className="stat-value positive">+24.8%</div>
-            <div className="trend-indicator positive">
-              <i className="bi bi-arrow-up"></i> 3.2%
-            </div>
+            <div className="stat-value positive">+24.8%</div>            
           </div>
         </div>
       </div>

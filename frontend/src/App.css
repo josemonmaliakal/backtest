@@ -128,12 +128,15 @@
         }
         
         .positive {
-            color: var(--accent-green);
+        color: #16a34a !important; /* green */
+        font-weight: 600;
         }
-        
+
         .negative {
-            color: var(--accent-red);
+        color: #dc2626 !important; /* red */
+        font-weight: 600;
         }
+
         
         
         

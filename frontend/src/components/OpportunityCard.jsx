@@ -11,6 +11,7 @@ const OpportunityCard = ({ data, onSelect }) => {
             <div className="stock-symbol">{data.symbol}</div>
             <div className="stock-name">{data.name}</div>
           </div>
+          <div>
           <span
             className={`signal-badge ${
               data.signal === "BUY" ? "signal-buy" : "signal-sell"
@@ -18,6 +19,7 @@ const OpportunityCard = ({ data, onSelect }) => {
           >
             {data.signal}
           </span>
+          </div>
         </div>
 
         <div className="mb-3">
