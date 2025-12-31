@@ -159,62 +159,6 @@ def run_backtest(df, dma, deviation):
         "Trades": trade_events
     }
 
-
-# ================================
-# PLOTTER
-# ================================
-# def plot_strategy(df, dma, deviation, title):
-#     deviation = deviation / 100
-#     df_plot = df.copy()
-
-#     df_plot["BuyLevel"] = df_plot[f"DMA{dma}"] * (1 - deviation)
-#     df_plot["SellLevel"] = df_plot[f"DMA{dma}"] * (1 + deviation)
-
-#     buys, sells = [], []
-#     position = 0
-
-#     for date, row in df_plot.iterrows():
-#         price = row["Close"]
-#         b = row["BuyLevel"]
-#         s = row["SellLevel"]
-
-#         if np.isnan(b) or np.isnan(s):
-#             continue
-
-#         if position == 0 and price < b:
-#             buys.append((date, price))
-#             position = 1
-
-#         elif position == 1 and price > s:
-#             sells.append((date, price))
-#             position = 0
-
-#     plt.figure(figsize=(16, 8))
-
-#     plt.plot(df_plot.index, df_plot["Close"], label="Close Price", linewidth=1)
-#     plt.plot(df_plot.index, df_plot[f"DMA{dma}"], label=f"{dma} DMA", linewidth=2)
-
-#     plt.plot(df_plot.index, df_plot["BuyLevel"], label="Buy Level", linestyle="--")
-#     plt.plot(df_plot.index, df_plot["SellLevel"], label="Sell Level", linestyle="--")
-
-#     if buys:
-#         plt.scatter([x[0] for x in buys], [x[1] for x in buys],
-#                     marker="^", color="green", s=120, label="Buy")
-
-#     if sells:
-#         plt.scatter([x[0] for x in sells], [x[1] for x in sells],
-#                     marker="v", color="red", s=120, label="Sell")
-
-#     plt.title(f"{stock} Strategy — DMA {dma}, Deviation {deviation*100:.0f}%")
-#     plt.xlabel("Date")
-#     plt.ylabel("Price")
-#     plt.grid(True, alpha=0.3)
-#     plt.legend()
-#     plt.tight_layout()
-#     plt.show()
-
-
-
 def export_strategy_to_csv(df, dma, deviation, output_csv):
     deviation_pct = deviation / 100
     dma_col = f"DMA{dma}"
@@ -268,6 +212,8 @@ def export_strategy_to_csv(df, dma, deviation, output_csv):
 # ================================
 all_results = []
 
+
+
 for file in os.listdir(DATA_DIR):
     if not file.endswith(".csv"):
         continue
@@ -294,18 +240,25 @@ for file in os.listdir(DATA_DIR):
             all_results.append(r)
 
     stock_df = pd.DataFrame(stock_results)
-    best = stock_df.loc[stock_df["NetProfit"].idxmax()]
-
+    best = stock_df.loc[stock_df["NetProfit"].idxmax()]   
     print(f"\nBEST STRATEGY FOR {stock}:")
     print(best)
-    best.to_csv(f"final/best-{stock}.csv")
+    filename = f"final/{stock.upper()}_TRADES.csv"
+    best.to_csv(filename)
+
+    with open(filename, "w") as f:
+        # First row (custom metadata)
+        f.write(f"key,value\n")
+        # Write dataframe with header
+        best.to_csv(f)
+    
    
     # Plot best
     #plot_strategy(df.copy(), best["DMA"], int(best["Deviation"]), stock)
     export_strategy_to_csv(
         df.copy(),dma=best["DMA"],
     deviation=int(best["Deviation"]),
-    output_csv=f"final/ {stock}-out.csv"
+    output_csv=f"final/{stock.upper()}.csv"
    
     )
 
