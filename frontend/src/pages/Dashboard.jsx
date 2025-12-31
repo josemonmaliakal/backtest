@@ -3,6 +3,7 @@ import Filters from "../components/Filters";
 import DetailView from "../components/DetailView";
 import DashboardStats from "../components/DashboardStats";
 import OpportunityList from "../components/OpportunityList";
+import Breadcrumb  from "../components/Breadcrumb";
 import { opportunities } from "../data/opportunities";
 import { loadCsv } from "../utils/loadCsv";
 
@@ -49,6 +50,7 @@ const Dashboard = () => {
   return (
     
     <div className="container-fluid mt-4">
+      <Breadcrumb current="Stocks" />
       <DashboardStats  items={opportunities} />
       
       <Filters onFilterChange={setFilter} />

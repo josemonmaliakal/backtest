@@ -1,9 +1,0 @@
-,13
-DMA,50
-Deviation,4.0
-NetProfit,30228.253556385513
-ROI,30.095749965926604
-Equity,130095.7499659266
-FYSummary,"{'2025-26': {'net': 30228.253556385513, 'units': 2435, 'avgBuy': 137.86389733059548, 'avgSell': 152.70630390143737, 'buyAmount': 335698.58999999997, 'sellAmount': 371839.85}}"
-Trades,"[{'date': Timestamp('2025-02-17 00:00:00'), 'price': 130.27, 'type': 'BUY'}, {'date': Timestamp('2025-04-21 00:00:00'), 'price': 151.13, 'type': 'SELL'}, {'date': Timestamp('2025-05-06 00:00:00'), 'price': 130.85, 'type': 'BUY'}, {'date': Timestamp('2025-05-15 00:00:00'), 'price': 143.56, 'type': 'SELL'}, {'date': Timestamp('2025-08-07 00:00:00'), 'price': 152.7, 'type': 'BUY'}, {'date': Timestamp('2025-09-15 00:00:00'), 'price': 164.09, 'type': 'SELL'}]"
-Stock,gppl

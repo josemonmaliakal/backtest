@@ -1,6 +1,8 @@
 import { useState } from "react";
 import DashboardStats from "./components/DashboardStats";
+import { Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
+import StocksPage from "./pages/Stocks";
 import "./App.css";
 
 function App() {
@@ -10,7 +12,10 @@ function App() {
     <div className="container-fluid p-4">
       
       
-      <Dashboard />
+       <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/stocks" element={<StocksPage />} />
+      </Routes>
       
       
     </div>

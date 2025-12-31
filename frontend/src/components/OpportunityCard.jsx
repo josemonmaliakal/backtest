@@ -34,11 +34,11 @@ const OpportunityCard = ({ data, onSelect }) => {
           <div className="col-6">
             <div className="metric-item">
               <span className="metric-label">Current Price</span>
-              <span className="metric-value">${data.price}</span>
+              <span className="metric-value"> ₹{data.price}</span>
             </div>
             <div className="metric-item">
               <span className="metric-label">Target</span>
-              <span className="metric-value positive">${data.target}</span>
+              <span className="metric-value positive"> ₹ {data.target}</span>
             </div>
           </div>
           <div className="col-6">

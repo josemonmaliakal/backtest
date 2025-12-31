@@ -32,3 +32,9 @@ def root():
 def list_stocks(db: Session = Depends(get_db)):
     stocks = db.query(StockDetails).all()
     return stocks
+
+@app.get("/backtest")
+def list_stocks(db: Session = Depends(get_db)):
+    stocks = db.query(StockDetails).all()
+    for item in stocks :
+        print(item)
