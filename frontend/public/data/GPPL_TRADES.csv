@@ -1,10 +1,10 @@
 key,value
-,13
-DMA,50
-Deviation,4.0
-NetProfit,30228.253556385513
-ROI,30.095749965926604
-Equity,130095.7499659266
-FYSummary,"{'2025-26': {'net': 30228.253556385513, 'units': 2435, 'avgBuy': 137.86389733059548, 'avgSell': 152.70630390143737, 'buyAmount': 335698.58999999997, 'sellAmount': 371839.85}}"
-Trades,"[{'date': Timestamp('2025-02-17 00:00:00'), 'price': 130.27, 'type': 'BUY'}, {'date': Timestamp('2025-04-21 00:00:00'), 'price': 151.13, 'type': 'SELL'}, {'date': Timestamp('2025-05-06 00:00:00'), 'price': 130.85, 'type': 'BUY'}, {'date': Timestamp('2025-05-15 00:00:00'), 'price': 143.56, 'type': 'SELL'}, {'date': Timestamp('2025-08-07 00:00:00'), 'price': 152.7, 'type': 'BUY'}, {'date': Timestamp('2025-09-15 00:00:00'), 'price': 164.09, 'type': 'SELL'}]"
+,5
+DMA,25
+Deviation,6.0
+NetProfit,32452.172782789272
+ROI,32.21684582426859
+Equity,132216.8458242686
+FYSummary,"{'2023-24': {'net': 20243.46381476037, 'units': 573, 'avgBuy': 174.4, 'avgSell': 216.3, 'buyAmount': 99931.2, 'sellAmount': 123939.90000000001}, '2024-25': {'net': 9168.539640834995, 'units': 1283, 'avgBuy': 197.43257989088076, 'avgSell': 206.15855027279812, 'buyAmount': 253306.0, 'sellAmount': 264501.42}, '2025-26': {'net': 3040.1693271939075, 'units': 1605, 'avgBuy': 151.38004361370716, 'avgSell': 153.8479937694704, 'buyAmount': 242964.97, 'sellAmount': 246926.03}}"
+Trades,"[{'date': Timestamp('2024-03-13 00:00:00'), 'price': 174.4, 'type': 'BUY'}, {'date': Timestamp('2024-03-26 00:00:00'), 'price': 216.3, 'type': 'SELL'}, {'date': Timestamp('2024-06-04 00:00:00'), 'price': 189.2, 'type': 'BUY'}, {'date': Timestamp('2024-06-24 00:00:00'), 'price': 213.78, 'type': 'SELL'}, {'date': Timestamp('2024-10-07 00:00:00'), 'price': 205.5, 'type': 'BUY'}, {'date': Timestamp('2024-12-03 00:00:00'), 'price': 198.69, 'type': 'SELL'}, {'date': Timestamp('2025-01-06 00:00:00'), 'price': 175.62, 'type': 'BUY'}, {'date': Timestamp('2025-04-21 00:00:00'), 'price': 151.13, 'type': 'SELL'}, {'date': Timestamp('2025-05-06 00:00:00'), 'price': 130.85, 'type': 'BUY'}, {'date': Timestamp('2025-05-30 00:00:00'), 'price': 156.15, 'type': 'SELL'}]"
 Stock,gppl

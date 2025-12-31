@@ -1,10 +1,10 @@
 key,value
-,50
-DMA,200
-Deviation,1.0
-NetProfit,11491.923338159982
-ROI,11.36869287103317
-Equity,111368.69287103317
-FYSummary,"{'2025-26': {'net': 11491.923338159982, 'units': 3463, 'avgBuy': 90.15451342766389, 'avgSell': 94.20733468091251, 'buyAmount': 312205.08, 'sellAmount': 326240.0}}"
-Trades,"[{'date': Timestamp('2025-01-17 00:00:00'), 'price': 90.9, 'type': 'BUY'}, {'date': Timestamp('2025-07-03 00:00:00'), 'price': 95.92, 'type': 'SELL'}, {'date': Timestamp('2025-07-28 00:00:00'), 'price': 90.4, 'type': 'BUY'}, {'date': Timestamp('2025-07-29 00:00:00'), 'price': 93.88, 'type': 'SELL'}, {'date': Timestamp('2025-08-06 00:00:00'), 'price': 89.24, 'type': 'BUY'}, {'date': Timestamp('2025-08-18 00:00:00'), 'price': 92.96, 'type': 'SELL'}]"
+,26
+DMA,75
+Deviation,7.000000000000001
+NetProfit,35840.99154952067
+ROI,35.75556114470959
+Equity,135755.5611447096
+FYSummary,"{'2025-26': {'net': 35840.99154952067, 'units': 2660, 'avgBuy': 81.36782330827067, 'avgSell': 97.3704962406015, 'buyAmount': 216438.41, 'sellAmount': 259005.52}}"
+Trades,"[{'date': Timestamp('2025-03-11 00:00:00'), 'price': 72.28, 'type': 'BUY'}, {'date': Timestamp('2025-05-13 00:00:00'), 'price': 86.54, 'type': 'SELL'}, {'date': Timestamp('2025-11-06 00:00:00'), 'price': 91.21, 'type': 'BUY'}, {'date': Timestamp('2025-11-14 00:00:00'), 'price': 109.1, 'type': 'SELL'}]"
 Stock,jamnauto
